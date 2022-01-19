@@ -81,6 +81,18 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                         }
                                     />
                                 </p>
+
+                                <Typography align='left'>
+                                    <Button
+                                        variant='contained'
+                                        component='span'
+                                        sx={{minWidth:100, maxWidth:100, marginRight:3}}
+                                        onClick={(e: React.MouseEvent<HTMLElement>) => props.doRefresh(e, 'refresh_button')}
+                                    >
+                                        Refresh
+                                    </Button>
+                                </Typography>
+
                             </Grid>
                             <Grid item xs={4}>
                                 <Paper
@@ -115,18 +127,6 @@ export const WidgetComponent = (props:any): JSX.Element => {
                         </Grid>
                     </Box>
                     </Stack>
-                    <p>
-                        <Typography align='left'>
-                            <Button
-                                variant='contained'
-                                component='span'
-                                sx={{minWidth:100, maxWidth:100, marginRight:3}}
-                                onClick={(e: React.MouseEvent<HTMLElement>) => props.doRefresh(e, 'refresh_button')}
-                            >
-                                Refresh
-                            </Button>
-                        </Typography>
-                    </p>
                 </Stack>
             </div>
         </ThemeProvider>
