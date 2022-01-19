@@ -30,6 +30,7 @@ export const WidgetComponent = (props:any): JSX.Element => {
                         spacing={2}
                         sx={{whiteSpace:'nowrap'}}
                     >
+                    <Box style={{overflow: 'auto'}}>
                         <Grid container spacing={2}>
                             <Grid item xs={4} style={{borderRight: "3px solid grey" }}>
                                 <Box
@@ -58,43 +59,41 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                 </Box>
                                 <Paper
                                     variant="outlined"
-                                    style={{borderWidth: 10, borderColor: "#FFFFFF", backgroundColor: "#FFFFFF"}}
+                                    style={{borderWidth: 20, borderColor: "#FFFFFF", backgroundColor: "#FFFFFF"}}
                                 />
-                                <Box
-                                    display="flex"
-                                    justifyContent="center"
-                                >
-                                    <Paper variant="outlined">
-                                        <TextField
-                                            multiline={true}
-                                            fullWidth={true}
-                                            defaultValue={props.messageOfIdentify}
-                                            value={props.messageOfIdentify}
-                                            InputProps={
-                                                {
-                                                    readOnly: true,
-                                                    style: {
-                                                        fontSize: 18,
-                                                        color: "#505050",
-                                                        fontWeight: 600
-                                                    },
-                                                }
+                                <p>
+                                    <TextField
+                                        variant="standard"
+                                        multiline={true}
+                                        fullWidth={true}
+                                        defaultValue={props.messageOfIdentify}
+                                        value={props.messageOfIdentify}
+                                        InputProps={
+                                            {
+                                                readOnly: true,
+                                                style: {
+                                                    fontSize: 22,
+                                                    color: "#505050",
+                                                    fontWeight: 600
+                                                },
+                                                disableUnderline: true,
                                             }
-                                        />
-                                    </Paper>
-                                </Box>
+                                        }
+                                    />
+                                </p>
                             </Grid>
                             <Grid item xs={4}>
                                 <Paper
                                     variant="outlined"
-                                    style={{borderWidth: 5, textAlign: 'center'}}
+                                    style={{borderWidth: 5, borderColor: "#FFFFFF", textAlign: 'center'}}
                                 >
                                     <Typography component="span"  variant='h3'>
                                         Application Info
                                     </Typography>
                                 </Paper>
-                                <Paper variant="outlined">
+                                <p>
                                     <TextField
+                                        variant="standard"
                                         multiline={true}
                                         fullWidth={true}
                                         defaultValue={props.messageOfAppInfo}
@@ -103,21 +102,20 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                             {
                                                 readOnly: true,
                                                 style: {
-                                                    fontSize: 18,
+                                                    fontSize: 22,
                                                     color: "#505050",
                                                     fontWeight: 600
                                                 },
+                                                disableUnderline: true,
                                             }
                                         }
                                     />
-                                </Paper>
+                                </p>
                             </Grid>
                         </Grid>
+                    </Box>
                     </Stack>
-                    <Stack
-                        spacing={2}
-                        sx={{whiteSpace:'nowrap'}}
-                    >
+                    <p>
                         <Typography align='left'>
                             <Button
                                 variant='contained'
@@ -128,7 +126,7 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                 Refresh
                             </Button>
                         </Typography>
-                    </Stack>
+                    </p>
                 </Stack>
             </div>
         </ThemeProvider>

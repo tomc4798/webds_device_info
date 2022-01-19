@@ -24,7 +24,7 @@ export const requestBackendDvcInfo = async (): Promise<string[]> => {
         });
         fw_mode = reply['mode']
         for (let [key, value] of Object.entries(reply)) {
-            dvcInfo[0] = dvcInfo[0] + key + ':  ' + trimNull(`${value}`) + '\n';
+            dvcInfo[0] = dvcInfo[0] + key + ' :  ' + trimNull(`${value}`) + '\n';
             if (key === 'partNumber')
             {
                 dvcInfo[2] = trimNull(`${value}`);
@@ -40,11 +40,11 @@ export const requestBackendDvcInfo = async (): Promise<string[]> => {
         console.log('appliction mode');
     } else if( fw_mode === 'bootloader' ) {
         console.log('bootloader mode');
-        dvcInfo[1] = '"app-info" is absent in "bootloader mode"';
+        dvcInfo[1] = 'Absent in "Bootloader Mode"';
         return Promise.resolve(dvcInfo);
     } else {
         console.error(`invalid fw mode: ${fw_mode}`);
-        dvcInfo[0] = `Failed to get "identify" report.\nfw_mode: ${fw_mode}` ;
+        dvcInfo[0] = `Failed to get "identify" report.\nFW Mode: ${fw_mode}` ;
         return Promise.resolve(dvcInfo);
     }
 
@@ -53,7 +53,7 @@ export const requestBackendDvcInfo = async (): Promise<string[]> => {
             method: 'GET',
         });
         for (let [key, value] of Object.entries(reply)) {
-            dvcInfo[1] = dvcInfo[1] + key + ':  ' + trimNull(`${value}`) + '\n';
+            dvcInfo[1] = dvcInfo[1] + key + ' :  ' + trimNull(`${value}`) + '\n';
         }
     } catch (error) {
         console.error(error);
