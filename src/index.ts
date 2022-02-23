@@ -58,7 +58,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
       },
     });
 
-    launcher.add({ command, args: { isLauncher: true }, category: 'WebDS', rank: 2 });
+    launcher.add({command, args: {isLauncher: true}, category: 'WebDS - Exploration'});
 
     let tracker = new WidgetTracker<MainAreaWidget>({ namespace: 'webds_device_info' });
     restorer.restore(tracker, { command, name: () => 'webds_device_info' });
