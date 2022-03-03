@@ -15,7 +15,9 @@ function trimNull(a:string) {
 }
 
 export const requestBackendDvcInfo = async (): Promise<string[]> => {
-    let dvcInfo: string[] = ['', '', ''];
+    let dvcInfo: string[] = ['', '', '', ''];
+    let partNumber: string = 'none';
+    let buildID: string = 'none';
 
     let fw_mode:string = 'none'
     try {
@@ -24,12 +26,18 @@ export const requestBackendDvcInfo = async (): Promise<string[]> => {
         });
         fw_mode = reply['mode']
         for (let [key, value] of Object.entries(reply)) {
-            dvcInfo[0] = dvcInfo[0] + key + ' :  ' + trimNull(`${value}`) + '\n';
-            if (key === 'partNumber')
-            {
-                dvcInfo[2] = trimNull(`${value}`);
+            var trimmedValue = trimNull(`${value}`);
+            if (key === 'partNumber') {
+                dvcInfo[2] = trimmedValue;
+                partNumber = trimmedValue;
+            } else if (key === 'buildID') {
+                buildID = trimmedValue;
+            } else {
+                dvcInfo[0] = dvcInfo[0] + key + ' :  ' + trimmedValue + '\n';
             }
         }
+        dvcInfo[3] = dvcInfo[3] + 'buildID :  ' + buildID + '\n';
+        dvcInfo[3] = dvcInfo[3] + 'partNumber :  ' + partNumber + '\n';
     } catch (error) {
         console.log(error);
         dvcInfo[0] = `Failed to get "identify" report.\nError: ${error}`;
@@ -45,6 +53,7 @@ export const requestBackendDvcInfo = async (): Promise<string[]> => {
     } else {
         console.error(`invalid fw mode: ${fw_mode}`);
         dvcInfo[0] = `Failed to get "identify" report.\nFW Mode: ${fw_mode}` ;
+        dvcInfo[3] = '';
         return Promise.resolve(dvcInfo);
     }
 
@@ -67,6 +76,7 @@ const WidgetContainer = (props:any): JSX.Element => {
     const [messageOfPartNumber, setMessageOfPartNumber] = useState<string>('requesting ...');
     const [messageOfIdentify, setMessageOfIdentify] = useState<string>('requesting ...');
     const [messageOfAppInfo, setMssageOfAppInfo] = useState<string>('requesting ...');
+    const [messageOfIdentifyHeader, setMessageOfIdentifyHeader] = useState<string>('');
 
     const doRefresh = (event: any, text: string) => {
         console.log('"doRefresh" by "' + text + '"');
@@ -74,6 +84,7 @@ const WidgetContainer = (props:any): JSX.Element => {
             setMessageOfIdentify(dvcInfo[0]);
             setMssageOfAppInfo(dvcInfo[1]);
             setMessageOfPartNumber(dvcInfo[2]);
+            setMessageOfIdentifyHeader(dvcInfo[3]);
         }).catch(reason => {
             console.error(
                 `Error on GET /webds/command?query\n${reason}`
@@ -89,6 +100,7 @@ const WidgetContainer = (props:any): JSX.Element => {
         <WidgetComponent
             doRefresh={doRefresh}
             messageOfPartNumber={messageOfPartNumber}
+            messageOfIdentifyHeader={messageOfIdentifyHeader}
             messageOfIdentify={messageOfIdentify}
             messageOfAppInfo={messageOfAppInfo}
         />
@@ -103,6 +115,10 @@ export class WidgetContent extends ReactWidget {
     }
 
     render(): JSX.Element {
-        return <WidgetContainer />;
+        return (
+            <div className='jp-webdsDeviceInfo-container'>
+                <WidgetContainer/>
+            </div>
+        );
     }
 }

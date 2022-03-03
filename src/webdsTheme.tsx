@@ -1,54 +1,42 @@
-import {
-  createTheme,
-} from "@mui/material/styles";
-
+import { createTheme } from "@mui/material/styles";
 
 const webdsTheme = createTheme({
   palette: {
     primary: {
-      main: "#007DC3"
-    },
-    secondary: {
-      main: "#A33E7F"
-    },
+      light: '#5aacf6',
+      main: '#007dc3',
+      dark: '#005192',
+      contrastText: '#fff'
+    }
   },
-  //spacing: 8,
+
+  typography: {
+    fontFamily: [
+      'Arial',
+      'Roboto',
+      'Helvetica',
+      'sans-serif'
+    ].join(','),
+  },
+
   components: {
-        MuiButton: {
-          styleOverrides: {
-            root: { padding: 5 },
-          },
-        },
-		MuiAvatar: {
-          defaultProps: {
-            sx: {
-              bgcolor: "#007DC3"
-            },
-        }
+    MuiAvatar: {
+      defaultProps: {
+        sx: {bgcolor: '#007dc3'}
       }
     },
-    //typography: 8,
-    typography: {
-        h1: {
-            fontSize: 30,
-            fontWeight: 300,
-            color: "#FFFFFF",
-            letterSpacing: "0.0075em",
-            verticalAlign: "middle",
-            alignItems: "center",
-            textAlign: "center"
-        },
-        h3: {
-            fontSize: 30,
-            fontWeight: 600,
-            color: "#000000",
-            letterSpacing: "0.0075em",
-            verticalAlign: "middle",
-            alignItems: "center",
-            textAlign: "center"
-        }
-    }    
+    MuiButton: {
+      defaultProps: {
+        variant: 'contained'
+      }
+    },
+    MuiFab: {
+      defaultProps: {
+        color: 'primary',
+        size: 'small'
+      }
+    }
+  },
 });
-
 
 export default webdsTheme
