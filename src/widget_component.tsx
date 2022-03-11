@@ -1,13 +1,12 @@
 import React from 'react';
-//--- @material-ui/core
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 //--- @mui/material/styles
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 //--- @mui/material
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 //---
 import webdsTheme from './webdsTheme';
 
