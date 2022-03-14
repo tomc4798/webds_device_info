@@ -3,7 +3,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 export function DvcInfoAsicIcon() {
     return (
-        <SvgIcon style={{ fontSize: 120 }} viewBox="0 0 50 60">
+        <SvgIcon style={{ fontSize: 100 }} viewBox="0 0 50 60">
             <g
                 transform="translate(0.000000,62.000000) scale(0.100000,-0.100000)"
                 fill="#E0e0E0"

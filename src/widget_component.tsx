@@ -17,53 +17,69 @@ const DvcInfoParser = (info:string): string[] => {
   return (temp);
 };
 
+const AsicParser = (info:string): string => {
+  const temp = info.split("-");
+  return (temp[0].toUpperCase());
+};
+
 export const WidgetComponent = (props:any): JSX.Element => {
     let identify_info = DvcInfoParser(props.messageOfIdentify);
     let app_info = DvcInfoParser(props.messageOfAppInfo);
     let identify_header = DvcInfoParser(props.messageOfIdentifyHeader);
+    let asic_type = AsicParser(props.messageOfPartNumber);
+
     return (
         <ThemeProvider theme={webdsTheme}>
             <div>
                 <Stack
                     spacing={2}
-                    divider={<Divider orientation='horizontal' sx={{width:475}} />}
-                    sx={{marginLeft:2, marginTop:2}}
+                    divider={<Divider orientation='horizontal' sx={{width:750}} />}
+                    sx={{marginLeft:'21px', marginTop:'16px'}}
                 >
                     <Stack
                         spacing={2}
                         sx={{whiteSpace:'nowrap'}}
                     >
                         <div style={{ display: "flex" }}>
-                            <div style={{ borderRight: "20px solid white" }}>
-                                <Paper
-                                    variant="outlined"
+                            <div id='upStackLayout' style={{ borderRight: "32px solid white" }}>
+                                <div
                                     style={{
-                                    display: "inline-block",
-                                    minWidth: 200,
-                                    minHeight: 200,
                                     textAlign: "center",
-                                    borderLeft: "10px solid white",
-                                    borderWidth: 2,
-                                    borderRadius: "5px",
-                                    borderColor: "#000000",
-                                    backgroundColor: "#000000"
                                     }}
                                 >
-                                    <DvcInfoAsicIcon/>
-                                    <p
-                                    style={{
-                                        fontSize: 30,
-                                        fontWeight: 600,
-                                        color: "white"
-                                    }}
+                                    <Paper
+                                        variant="outlined"
+                                        style={{
+                                            display: "inline-block",
+                                            minWidth: 170,
+                                            minHeight: 170,
+                                            textAlign: "center",
+                                            borderLeft: "10px solid white",
+                                            borderWidth: 2,
+                                            borderRadius: "5px",
+                                            borderColor: "#000000",
+                                            backgroundColor: "#000000"
+                                        }}
                                     >
-                                    {props.messageOfPartNumber}
-                                    </p>
-                                </Paper>
+                                        <p style={{color:'#000000', lineHeight: "12px"}}>NULL Text</p>
+                                        <DvcInfoAsicIcon/>
+                                        <p style={{color:'#000000', lineHeight: "10px"}}>NULL Text</p>
+                                        <p
+                                            style={{
+                                                fontSize: 28,
+                                                fontWeight: 600,
+                                                color: "white"
+                                            }}
+                                        >
+                                            {asic_type}
+                                        </p>
+                                        <p style={{color:'#000000', lineHeight: "18px"}}>NULL Text</p>
+                                    </Paper>
+                                </div>
                                 <p style={{color:'#FFFFFF'}}>NULL Text</p>
                                 <Typography
                                     align="left"
-                                    style={{ 
+                                    style={{
                                         fontSize: 18,
                                         fontWeight: 600,
                                         lineHeight: "36px",
@@ -73,9 +89,8 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                         <p>{info}</p>
                                     ))}
                                 </Typography>
-                                <Typography
-                                    align="left"
-                                    style={{ 
+                                <p
+                                    style={{
                                         fontSize: 18,
                                         lineHeight: "36px",
                                     }}
@@ -83,10 +98,10 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                     {identify_info.map((info) => (
                                         <p>{info}</p>
                                     ))}
-                                </Typography>
+                                </p>
                             </div>
                             <div style={{ borderRight: "1px solid #DADADA" }} />
-                            <div style={{ borderLeft: "20px solid white" }}>
+                            <div style={{ borderLeft: "32px solid white" }}>
                                 <p
                                     style={{
                                         fontSize: 30,
@@ -95,9 +110,8 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                 >
                                     Application Information
                                 </p>
-                                <Typography
-                                    align="left"
-                                    style={{ 
+                                <p
+                                    style={{
                                         fontSize: 18,
                                         lineHeight: "30px",
                                         borderTop: "10px solid white"
@@ -106,26 +120,21 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                     {app_info.map((info) => (
                                         <p>{info}</p>
                                     ))}
-                                </Typography>
+                                </p>
                             </div>
                         </div>
                     </Stack>
                     <p>
-                            <Typography
-                                align='left'
-                                style={{
-                                    marginLeft: 190
-                                }}
-                            >
-                                <Button
-                                    variant='contained'
-                                    component="span"
-                                    sx={{minWidth:100, maxWidth:100, marginRight:3}}
-                                    onClick={(e: React.MouseEvent<HTMLElement>) => props.doRefresh(e, 'refresh_button')}
-                                >
-                                    Refresh
-                                </Button>
-                            </Typography>
+                        <Button
+                            variant='contained'
+                            component="span"
+                            style={{
+                                marginLeft: 210
+                            }}
+                            onClick={(e: React.MouseEvent<HTMLElement>) => props.doRefresh(e, 'refresh_button')}
+                        >
+                            Refresh
+                        </Button>
                     </p>
                 </Stack>
             </div>
