@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 //---
-import webdsTheme from './webdsTheme';
+import webdsTheme from './webds_theme';
 
 import {DvcInfoAsicIcon} from './dvcInfoIcons';
 
@@ -34,7 +34,7 @@ export const WidgetComponent = (props:any): JSX.Element => {
                 <Stack
                     spacing={2}
                     divider={<Divider orientation='horizontal' sx={{width:750}} />}
-                    sx={{marginLeft:'21px', marginTop:'16px'}}
+                    sx={{marginLeft:'42px', marginTop:'32px'}}
                 >
                     <Stack
                         spacing={2}
