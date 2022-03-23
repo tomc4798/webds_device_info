@@ -75,7 +75,7 @@ export const requestBackendDvcInfo = async (): Promise<string[]> => {
 };
 
 const WidgetContainer = (props:any): JSX.Element => {
-    const [messageOfPartNumber, setMessageOfPartNumber] = useState<string>('requesting ...');
+    const [messageOfPartNumber, setMessageOfPartNumber] = useState<string>('');
     const [messageOfIdentify, setMessageOfIdentify] = useState<string>('requesting ...');
     const [messageOfAppInfo, setMssageOfAppInfo] = useState<string>('requesting ...');
     const [messageOfIdentifyHeader, setMessageOfIdentifyHeader] = useState<string>('');

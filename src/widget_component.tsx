@@ -39,10 +39,11 @@ export const WidgetComponent = (props:any): JSX.Element => {
                         sx={{whiteSpace:'nowrap'}}
                     >
                         <div style={{ display: "flex" }}>
-                            <div id='upStackLayout' style={{ borderRight: "32px solid white" }}>
+                            <div id='upStackLayout' style={{ borderRight: "32px solid transparent" }}>
                                 <div
                                     style={{
-                                    textAlign: "center",
+                                        textAlign: "center",
+                                        borderLeft: "10px solid transparent",
                                     }}
                                 >
                                     <Paper
@@ -52,16 +53,15 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                             minWidth: 170,
                                             minHeight: 170,
                                             textAlign: "center",
-                                            borderLeft: "10px solid white",
                                             borderWidth: 2,
                                             borderRadius: "5px",
-                                            borderColor: "#000000",
+                                            borderColor: "primary",
                                             backgroundColor: "#000000"
                                         }}
                                     >
-                                        <p style={{color:'#000000', lineHeight: "12px"}}>NULL Text</p>
+                                        <p style={{color:'transparent', lineHeight: "12px"}}>NULL Text</p>
                                         <DvcInfoAsicIcon/>
-                                        <p style={{color:'#000000', lineHeight: "10px"}}>NULL Text</p>
+                                        <p style={{color:'transparent', lineHeight: "10px"}}>NULL Text</p>
                                         <p
                                             style={{
                                                 fontSize: 28,
@@ -71,10 +71,10 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                         >
                                             {asic_type}
                                         </p>
-                                        <p style={{color:'#000000', lineHeight: "18px"}}>NULL Text</p>
+                                        <p style={{color:'transparent', lineHeight: "18px"}}>NULL Text</p>
                                     </Paper>
                                 </div>
-                                <p style={{color:'#FFFFFF'}}>NULL Text</p>
+                                <p style={{color:'transparent'}}>NULL Text</p>
                                 <Typography
                                     align="left"
                                     style={{
@@ -87,7 +87,7 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                         <p>{info}</p>
                                     ))}
                                 </Typography>
-                                <p
+                                <Typography
                                     style={{
                                         fontSize: 18,
                                         lineHeight: "36px",
@@ -96,29 +96,31 @@ export const WidgetComponent = (props:any): JSX.Element => {
                                     {identify_info.map((info) => (
                                         <p>{info}</p>
                                     ))}
-                                </p>
+                                </Typography>
                             </div>
-                            <div style={{ borderRight: "1px solid #DADADA" }} />
-                            <div style={{ borderLeft: "32px solid white" }}>
-                                <p
+                            <Typography>
+                                <Divider orientation='vertical'/>
+                            </Typography>
+                            <div style={{ borderLeft: "32px solid transparent" }}>
+                                <Typography
                                     style={{
                                         fontSize: 30,
                                         fontWeight: 600
                                     }}
                                 >
                                     Application Information
-                                </p>
-                                <p
+                                </Typography>
+                                <Typography
                                     style={{
                                         fontSize: 18,
                                         lineHeight: "30px",
-                                        borderTop: "10px solid white"
+                                        borderTop: "10px solid transparent"
                                     }}
                                 >
                                     {app_info.map((info) => (
                                         <p>{info}</p>
                                     ))}
-                                </p>
+                                </Typography>
                             </div>
                         </div>
                     </Stack>
