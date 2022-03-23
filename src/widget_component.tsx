@@ -7,8 +7,6 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-//---
-import webdsTheme from './webds_theme';
 
 import {DvcInfoAsicIcon} from './dvcInfoIcons';
 
@@ -29,7 +27,7 @@ export const WidgetComponent = (props:any): JSX.Element => {
     let asic_type = AsicParser(props.messageOfPartNumber);
 
     return (
-        <ThemeProvider theme={webdsTheme}>
+        <ThemeProvider theme={props.theme}>
             <div>
                 <Stack
                     spacing={2}

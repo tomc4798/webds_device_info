@@ -11,6 +11,8 @@ import {
 
 import { ILauncher } from '@jupyterlab/launcher';
 
+import { WebDSService } from '@webds/service';
+
 import { WidgetLogoIcon } from './icons';
 
 import { WidgetContent } from './widget_container';
@@ -21,27 +23,28 @@ import { WidgetContent } from './widget_container';
 const plugin: JupyterFrontEndPlugin<void> = {
   id: '@webds/device_info:plugin',
   autoStart: true,
-  requires: [ILauncher, ILayoutRestorer],
+  requires: [ILauncher, ILayoutRestorer, WebDSService],
   activate: async (
     app: JupyterFrontEnd,
     launcher: ILauncher,
-    restorer: ILayoutRestorer
+    restorer: ILayoutRestorer,
+    service: WebDSService
   ) => {
     console.log('JupyterLab extension @webds/device_info is activated!');
 
     let widget: MainAreaWidget;
-    const { commands, shell } = app;
+    const {commands, shell} = app;
     const command = 'webds_device_info:open';
     commands.addCommand(command, {
       label: 'Device Information',
       caption: 'Device Information',
-      icon: (args: { [x: string]: any }) => {
+      icon: (args: {[x: string]: any}) => {
         return args['isLauncher'] ? WidgetLogoIcon : undefined;
       },
       execute: () => {
         if (!widget || widget.isDisposed) {
-            const content = new WidgetContent();
-            widget = new MainAreaWidget<WidgetContent>({ content });
+            const content = new WidgetContent(service);
+            widget = new MainAreaWidget<WidgetContent>({content});
             widget.id = 'webds_device_info_widget';
             widget.title.label = 'Device Information';
             widget.title.icon = WidgetLogoIcon;
@@ -60,8 +63,8 @@ const plugin: JupyterFrontEndPlugin<void> = {
 
     launcher.add({command, args: {isLauncher: true}, category: 'WebDS - Exploration'});
 
-    let tracker = new WidgetTracker<MainAreaWidget>({ namespace: 'webds_device_info' });
-    restorer.restore(tracker, { command, name: () => 'webds_device_info' });
+    let tracker = new WidgetTracker<MainAreaWidget>({namespace: 'webds_device_info'});
+    restorer.restore(tracker, {command, name: () => 'webds_device_info'});
   }
 };
 

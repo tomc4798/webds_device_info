@@ -3,6 +3,8 @@ import { ReactWidget } from '@jupyterlab/apputils';
 import { useState, useEffect } from 'react';
 import React from 'react';
 
+import { WebDSService } from '@webds/service';
+
 import { WidgetComponent } from './widget_component';
 import { requestAPI } from './handler';
 
@@ -96,28 +98,36 @@ const WidgetContainer = (props:any): JSX.Element => {
         doRefresh(null, 'initial_refresh');
     }, []);
 
+    const webdsTheme = props.service.ui.getWebDSTheme();
+
     return (
-        <WidgetComponent
-            doRefresh={doRefresh}
-            messageOfPartNumber={messageOfPartNumber}
-            messageOfIdentifyHeader={messageOfIdentifyHeader}
-            messageOfIdentify={messageOfIdentify}
-            messageOfAppInfo={messageOfAppInfo}
-        />
+        <div className='jp-webds-widget-body'>
+            <WidgetComponent
+                theme={webdsTheme}
+                doRefresh={doRefresh}
+                messageOfPartNumber={messageOfPartNumber}
+                messageOfIdentifyHeader={messageOfIdentifyHeader}
+                messageOfIdentify={messageOfIdentify}
+                messageOfAppInfo={messageOfAppInfo}
+            />
+        </div>
     );
 };
 
 
 export class WidgetContent extends ReactWidget {
-    constructor() {
+    service: WebDSService|null = null;
+
+    constructor(service: WebDSService) {
         super();
         this.addClass('jp-webdsDeviceInfoWidget');
+        this.service = service;
     }
 
     render(): JSX.Element {
         return (
-            <div className='jp-webdsDeviceInfo-container'>
-                <WidgetContainer/>
+            <div className='jp-webds-widget'>
+                <WidgetContainer service={this.service}/>
             </div>
         );
     }
