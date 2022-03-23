@@ -32,7 +32,7 @@ export const WidgetComponent = (props:any): JSX.Element => {
                 <Stack
                     spacing={2}
                     divider={<Divider orientation='horizontal' sx={{width:750}} />}
-                    sx={{marginLeft:'42px', marginTop:'32px'}}
+                    sx={{marginLeft:'21px', marginTop:'32px'}}
                 >
                     <Stack
                         spacing={2}
